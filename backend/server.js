@@ -12,12 +12,26 @@ connectDB();
 
 app.use(cors());
 
-// Middleware
+// CORS Configuration
+const allowedOrigins = [
+  "https://blog-world-tau.vercel.app",
+  "http://localhost:5173",
+];
+
 app.use(
   cors({
-    origin: "https://blog-world-tau.vercel.app/",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    credentials: true,
   }),
 );
+
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
