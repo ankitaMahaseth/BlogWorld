@@ -15,7 +15,7 @@ app.use(cors());
 // Middleware
 app.use(
   cors({
-    origin: "https://myblogworld.netlify.app/",
+    origin: "https://blog-world-tau.vercel.app/",
   }),
 );
 app.use(express.json());
