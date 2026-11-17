@@ -11,6 +11,13 @@ const app = express();
 connectDB();
 
 app.use(cors());
+
+// Middleware
+app.use(
+  cors({
+    origin: "https://myblogworld.netlify.app/",
+  }),
+);
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
